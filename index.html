@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -142,6 +140,65 @@
         </div>
     </div>
 
+    <!-- Event Modal -->
+    <div class="modal" id="eventModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="eventModalTitle">Create New Event</h2>
+            <form id="eventForm">
+                <div class="form-group">
+                    <label for="eventTitle">Event Title *</label>
+                    <input type="text" id="eventTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDescription">Description</label>
+                    <textarea id="eventDescription" rows="4"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventDate">Date *</label>
+                        <input type="date" id="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventTime">Time *</label>
+                        <input type="time" id="eventTime" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="eventVenue">Venue *</label>
+                    <input type="text" id="eventVenue" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventCategory">Category</label>
+                    <select id="eventCategory">
+                        <option value="general">General</option>
+                        <option value="academic">Academic</option>
+                        <option value="sports">Sports</option>
+                        <option value="cultural">Cultural</option>
+                        <option value="social">Social</option>
+                        <option value="meeting">Meeting</option>
+                    </select>
+                </div>
+                <div class="file-upload">
+                    <label for="eventFiles">
+                        <i class="fas fa-paperclip"></i> Attach Files (Optional)
+                    </label>
+                    <input type="file" id="eventFiles" multiple>
+                    <small>Images, PDFs, Documents (Max: 5MB per file)</small>
+                    <div id="eventFileList" class="file-list"></div>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Save Event
+                    </button>
+                    <button type="button" class="btn-secondary" id="cancelEventBtn">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Dashboard (Hidden by default) -->
     <div class="dashboard" id="dashboard">
         <div class="sidebar">
@@ -150,14 +207,13 @@
                 <p id="userWelcome">Welcome, User!</p>
             </div>
             <ul class="sidebar-menu">
-                <!-- Menu items will be dynamically generated based on user role -->
                 <li><a href="#" data-section="announcements"><i class="fas fa-bullhorn"></i> Announcements</a></li>
                 <li><a href="#" data-section="rules"><i class="fas fa-gavel"></i> Rules & Guidelines</a></li>
                 <li><a href="#" data-section="letters"><i class="fas fa-envelope"></i> Official Letters</a></li>
                 <li><a href="#" data-section="events"><i class="fas fa-calendar-alt"></i> Programs & Events</a></li>
                 <li><a href="#" data-section="resolutions"><i class="fas fa-file-contract"></i> Resolutions</a></li>
                 <li><a href="#" data-section="files"><i class="fas fa-folder-open"></i> Available Files</a></li>
-                <!-- Feedback section will be added dynamically for admin users -->
+                <li><a href="#" data-section="feedback"><i class="fas fa-comments"></i> Student Feedback</a></li>
             </ul>
             <div class="sidebar-footer">
                 <button class="btn-logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</button>
@@ -166,7 +222,6 @@
         <div class="dashboard-content">
             <div class="content-header">
                 <h2 id="contentTitle">Dashboard</h2>
-                <button class="btn-primary" id="addPostBtn" style="display: none;">+ Add New</button>
             </div>
             <div class="content-body" id="contentBody">
                 <!-- Content will be loaded here based on selection -->
